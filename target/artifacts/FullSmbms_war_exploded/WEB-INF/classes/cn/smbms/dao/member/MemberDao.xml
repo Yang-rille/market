@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.smbms.dao.member.MemberDao">
+  <!--增加会员-->
+  <insert id="add">
+    insert into smbms_member (memCode,memName,memDesc,memPhone,memAddress,createdBy,creationDate)
+    values(#{memCode},#{memName},#{memDesc},#{memPhone},#{memAddress},#{createdBy},#{creationDate})
+  </insert>
+  <!--通过会员名称、编码获取会员列表-模糊查询-memberList-->
+  <select id="getMemberList" resultType="Member">
+    select * from smbms_member
+    <where>
+      <if test="memName!=null and memName !=''">
+        and memName like concat('%',#{memName},'%')
+      </if>
+      <if test="memCode!=null and memCode!=''">
+        and memCode like concat('%',#{memCode},'%')
+      </if>
+    </where>
+    order by creationDate DESC
+  </select>
+  <!--通过memId删除Member-->
+  <delete id="deleteMemberById">
+    delete from smbms_member where id=#{delId}
+  </delete>
+  <!--通过memId获取Member-->
+  <select id="getMemberById" resultType="Member">
+    select * from smbms_member where id= #{id}
+  </select>
+  <!--修改用户信息-->
+  <update id="modify">
+    update smbms_member
+    <set>
+      <if test="memName!= null and memName !=''">
+        memName = #{memName},
+      </if>
+      <if test="memDesc!=null and memDesc !=''">
+        memDesc= #{memDesc},
+      </if>
+      <if test="memPhone!=null and memPhone !=''">
+        memPhone= #{memPhone},
+      </if>
+      <if test="memAddress!=null and memAddress !=''">
+        memAddress= #{memAddress},
+      </if>
+      <if test="modifyBy!= null">
+        modifyBy = #{modifyBy},
+      </if>
+      <if test="modifyDate!=null">
+        modifyDate = #{modifyDate},
+      </if>
+    </set>
+    where id = #{id}
+  </update>
+</mapper>
