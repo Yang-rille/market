@@ -35,7 +35,7 @@
                 <li><a href="${pageContext.request.contextPath }/member/query">会员管理</a></li>
                 <li><a href="${pageContext.request.contextPath }/fruit/query">商品管理</a></li>
                 <li><a href="${pageContext.request.contextPath }/bill/query">订单管理</a></li>
-                <li><a href="${pageContext.request.contextPath }/dashboard">概览</a></li>
+                <li><a href="${pageContext.request.contextPath }/dashboard/view">概览统计</a></li>
                 <li><a href="${pageContext.request.contextPath }/user/pwd">密码修改</a></li>
                 <li><a href="${pageContext.request.contextPath }/user/loginOut">退出系统</a></li>
             </ul>

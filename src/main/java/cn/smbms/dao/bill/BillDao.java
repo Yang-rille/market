@@ -1,8 +1,11 @@
 package cn.smbms.dao.bill;
 
+import cn.smbms.pojo.SalePie;
+import java.util.Date;
 import java.util.List;
 
 import cn.smbms.pojo.Bill;
+import org.apache.ibatis.annotations.Param;
 
 public interface BillDao {
 	/**
@@ -51,5 +54,9 @@ public interface BillDao {
 	 * 根据会员ID查询订单数量
 	 */
 	public int getBillCountByMemberId(String memberId)throws Exception;
+
+	Float getBillByTime(@Param("start") Date start, @Param("end") Date end);
+
+	List<SalePie> getTop5Fruit();
 
 }

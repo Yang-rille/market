@@ -8,7 +8,7 @@ function deleteBill(obj){
 		data:{billid:obj.attr("billid")},
 		dataType:"json",
 		success:function(data){
-			if(data.delResult == "true"){//删除成功：移除删除行
+			if(data.delResult === "true"){//删除成功：移除删除行
 				cancleBtn();
 				obj.parents("tr").remove();
 			}else if(data.delResult == "false"){//删除失败
